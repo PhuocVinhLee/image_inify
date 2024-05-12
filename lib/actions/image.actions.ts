@@ -8,6 +8,8 @@ import Image from "../database/models/image.model";
 import { redirect } from "next/navigation";
 
 import { v2 as cloudinary } from 'cloudinary'
+//import { CldImage } from 'next-cloudinary';
+
 
 const populateUser = (query: any) => query.populate({
   path: 'author',
