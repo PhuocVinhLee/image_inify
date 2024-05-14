@@ -16,6 +16,7 @@ if(!cached) {
 }
 
 export const connectToDatabase = async () => {
+  console.log("connet seeseet1")
   if(cached.conn) return cached.conn;
 
   if(!MONGODB_URL) throw new Error('Missing MONGODB_URL');
@@ -25,8 +26,9 @@ export const connectToDatabase = async () => {
     mongoose.connect(MONGODB_URL, { 
       dbName: 'image_inify_nextjs14-db', bufferCommands: false 
     })
-
+    console.log("connet seeseet2")
   cached.conn = await cached.promise;
+  console.log("connet seeseet3")
 
   return cached.conn;
 }
