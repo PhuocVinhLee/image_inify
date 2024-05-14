@@ -16,7 +16,8 @@ export async function POST(req: Request) {
     console.log("handel Post ne");
     
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
-  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
+  try {
+    const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
     throw new Error(
@@ -63,6 +64,7 @@ export async function POST(req: Request) {
   // Get the ID and type
   const { id } = evt.data;
   const eventType = evt.type;
+  console.log(eventType)
 
   // CREATE
   if (eventType === "user.created") {
@@ -121,7 +123,10 @@ console.log("create User")
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
   console.log("Webhook body:", body);
 
-  return new Response("", { status: 200 });
+  return new Response("Not event", { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ message: "NOTOK", error: error });
+  }
 }
 // export async function GET(req: Request){
 //     console.log("handel get")
