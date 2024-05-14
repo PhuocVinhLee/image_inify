@@ -6,7 +6,12 @@ import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
-
+export async function GET(){
+  
+    return NextResponse.json({ message: "OK", user: "snlkancsnsca"});
+   
+ 
+}
 export async function POST(req: Request) {
     console.log("handel Post ne");
     
@@ -71,8 +76,10 @@ console.log("create User")
       lastName: last_name!,
       photo: image_url,
     };
+    console.log(user)
 
     const newUser = await createUser(user);
+    console.log("new user", newUser)
 
     // Set public metadata
     if (newUser) {
@@ -116,6 +123,6 @@ console.log("create User")
 
   return new Response("", { status: 200 });
 }
-export async function GET(req: Request){
-    console.log("handel get")
-}
+// export async function GET(req: Request){
+//     console.log("handel get")
+// }
