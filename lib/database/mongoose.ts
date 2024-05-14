@@ -1,6 +1,7 @@
 import mongoose, { Mongoose } from 'mongoose';
 
-const MONGODB_URL = process.env.MONGODB_URL;
+const MONGODB_URL = process.env.MONGODB_URL;//MONGODB_URL
+console.log(MONGODB_URL)
 
 interface MongooseConnection {
   conn: Mongoose | null;
@@ -8,7 +9,7 @@ interface MongooseConnection {
 }
 
 let cached: MongooseConnection = (global as any).mongoose
-
+console.log(cached)
 if(!cached) {
   cached = (global as any).mongoose = { 
     conn: null, promise: null 
@@ -24,9 +25,9 @@ export const connectToDatabase = async () => {
   cached.promise = 
     cached.promise || 
     mongoose.connect(MONGODB_URL, { 
-      dbName: 'image_inify_nextjs14-db', bufferCommands: false 
+      dbName: 'image_inify_nextjs14-db', bufferCommands: false , connectTimeoutMS: 30000
     })
-    console.log("connet seeseet2")
+    console.log(await cached.promise)
   cached.conn = await cached.promise;
   console.log("connet seeseet3")
 
