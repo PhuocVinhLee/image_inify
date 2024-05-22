@@ -8,8 +8,6 @@ import Image from "../database/models/image.model";
 import { redirect } from "next/navigation";
 
 import { v2 as cloudinary } from 'cloudinary'
-//import { CldImage } from 'next-cloudinary';
-
 
 const populateUser = (query: any) => query.populate({
   path: 'author',
@@ -110,7 +108,7 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
       secure: true,
     })
 
-    let expression = 'folder=imaginify';
+    let expression = 'folder=imageinifty';
 
     if (searchQuery) {
       expression += ` AND ${searchQuery}`
@@ -120,7 +118,8 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
       .expression(expression)
       .execute();
 
-    const resourceIds = resources.map((resource: any) => resource.public_id);
+    const resourceIds = resources.map((resource: any) => resource.public_id);//
+    console.log(resourceIds)
 
     let query = {};
 

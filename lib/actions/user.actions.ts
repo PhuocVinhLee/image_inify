@@ -8,14 +8,13 @@ import { handleError } from "../utils";
 
 // CREATE
 export async function createUser(user: CreateUserParams) {
-  console.log("creUser from action");
+ 
   try {
-    console.log("creUser from action....")
+   
     await connectToDatabase();
-    console.log("creUser from action2")
-    console.log("creUser from action 3")
+    
     const newUser = await User.create(user);
-    console.log(newUser)
+   
 
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
@@ -26,9 +25,9 @@ export async function createUser(user: CreateUserParams) {
 // READ
 export async function getUserById(userId: string) {
   try {
-    console.log(" befor conner cseeetion")
+   
     await connectToDatabase();
-    console.log("conner cseeetion")
+    
 
     const user = await User.findOne({ clerkId: userId });
 

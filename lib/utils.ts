@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-prototype-builtins */
 import { type ClassValue, clsx } from "clsx";
-import qs from "qs"
+import qs from "qs";
 import { twMerge } from "tailwind-merge";
 
 import { aspectRatioOptions } from "@/constants";
@@ -59,7 +59,7 @@ export const formUrlQuery = ({
   value,
 }: FormUrlQueryParams) => {
   const params = { ...qs.parse(searchParams.toString()), [key]: value };
-
+  console.log(params);
   return `${window.location.pathname}?${qs.stringify(params, {
     skipNulls: true,
   })}`;
@@ -132,7 +132,9 @@ export const download = (url: string, filename: string) => {
 
 // DEEP MERGE OBJECTS
 export const deepMergeObjects = (obj1: any, obj2: any) => {
-  if(obj2 === null || obj2 === undefined) {
+  console.log(obj1)
+  console.log(obj2)
+  if (obj2 === null || obj2 === undefined) {
     return obj1;
   }
 

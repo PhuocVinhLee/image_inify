@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+// declare is gobal in project
+
 // ====== USER PARAMS
 declare type CreateUserParams = {
   clerkId: string;

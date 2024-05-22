@@ -13,8 +13,7 @@ export async function GET(){
  
 }
 export async function POST(req: Request) {
-    console.log("handel Post ne");
-    
+  
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   try {
     const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
@@ -64,12 +63,12 @@ export async function POST(req: Request) {
   // Get the ID and type
   const { id } = evt.data;
   const eventType = evt.type;
-  console.log(eventType)
+
 
   // CREATE
   if (eventType === "user.created") {
     const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
-console.log("create User")
+
     const user = {  
       clerkId: id,
       email: email_addresses[0].email_address,
@@ -78,11 +77,10 @@ console.log("create User")
       lastName: last_name!,
       photo: image_url,
     };
-    console.log(user)
+  
 
     const newUser = await createUser(user);
-    console.log("new user", newUser)
-
+   
     // Set public metadata
     if (newUser) {
       await clerkClient.users.updateUserMetadata(id, {
